@@ -1,0 +1,21 @@
+{% extends 'LKECoreBundle::layout_with_title.html.twig' %}
+
+{% block body %}
+
+    {% for post in pagination %}
+    <div class="col s12 m6 l6">
+        {% include 'LKEBlogBundle:Template:preview_post.html.twig' with {sizeCard: 'large'} %}
+    </div>
+    {% else %}
+        <p>
+            {{ 'lkecore.homepage.no_post'|trans }}
+        </p>
+    {% endfor %}
+
+    <div class="col s12 center-align">
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+
+{% endblock %}

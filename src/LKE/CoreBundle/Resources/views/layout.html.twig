@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <title>{% block title %}LPDW Blog{% endblock %}</title>
+
+        {% block stylesheet %}
+            {# Utilisation de asset() au lieu du block styleheets, sinon problème avec les fonts #}
+            <link type="text/css" rel="stylesheet" href="{{ asset("bundles/lkecore/css/materialize.min.css") }}" media="screen,projection" />
+        {% endblock %}
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% include 'LKECoreBundle::menu.html.twig' %}
+
+        {# marker for preg_replace (add cookie confirm) - cheat or clever or stupid ? :p #}
+        <!-- cookie_warning -->
+
+        <div class="container">
+            <div class="row">
+                {% include 'LKECoreBundle::flash.html.twig' %}
+
+                <div class="section">
+                    {% block body_title %}{% endblock %}
+
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+
+        {% if is_granted("ROLE_ADMIN") %}
+            {% include 'LKEAdminBundle::widget.html.twig' %}
+        {% endif %}
+
+        {% block javascript %}
+            {% javascripts
+                '@LKECoreBundle/Resources/public/js/jquery-2.2.0.min.js'
+                '@LKECoreBundle/Resources/public/js/materialize.min.js'
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
+    </body>
+</html>

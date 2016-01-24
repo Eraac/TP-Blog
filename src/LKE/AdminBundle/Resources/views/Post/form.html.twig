@@ -1,0 +1,23 @@
+{% extends 'LKEAdminBundle::layout.html.twig' %}
+
+{% block body %}
+    {% set size = {'size': 's12 m4 l4'} %}
+    {{ form_start(form) }}
+    {{ form_row(form.title, size) }}
+    {{ form_row(form.publishedAt, {'size': 's12 m8 l8'}) }}
+    {{ form_row(form.content, {'size': 's12 m12 l12'}) }}
+    {{ form_row(form.image, size) }}
+    {{ form_row(form.category, size) }}
+    {{ form_row(form.tags, size) }}
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+    </script>
+{% endblock %}

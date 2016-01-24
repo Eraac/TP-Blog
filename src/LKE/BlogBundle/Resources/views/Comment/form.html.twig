@@ -1,0 +1,6 @@
+<h4>{{ "lkeblog.comment.add.title"|trans }}</h4>
+
+{{ form_start(form, {action: url("lke_blog_post_comment", {slug: post.slug})}) }}
+{{ form_row(form.username, {size: 's12 m6 l3'}) }}
+{{ form_row(form.content) }}
+{{ form_end(form) }}

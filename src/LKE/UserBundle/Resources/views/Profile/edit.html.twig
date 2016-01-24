@@ -1,0 +1,12 @@
+{% extends "LKEUserBundle::layout.html.twig" %}
+
+{%- block content_title -%}
+    {{ parent() }} -
+    <a class="waves-effect waves-light btn orange btn-large" href="{{ url('fos_user_change_password') }}">
+        {{ 'lkeuser.profile.change-password'|trans }}
+    </a>
+{%- endblock -%}
+
+{% block body %}
+{% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+{% endblock body %}

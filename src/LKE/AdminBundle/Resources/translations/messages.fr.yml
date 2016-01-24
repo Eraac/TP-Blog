@@ -1,0 +1,43 @@
+lkeadmin:
+    title: 'Admin'
+    tooltip:
+        add_tag: 'Ajouter un tag'
+        add_category: 'Ajouter une catégorie'
+        add_post: 'Ajouter un article'
+
+    success:
+        post:
+            add: 'Article ajouté avec succès'
+            edit: 'Article modifé avec succès'
+            remove: 'Article supprimé avec succès'
+        tag:
+            add: 'Tag ajouté avec succès'
+            edit: 'Tag modifié avec succès'
+            remove: 'Tag supprimé avec succès'
+
+        category:
+            add: 'Catégorie ajoutée avec succès'
+            edit: 'Catégorie modifiée avec succès'
+            remove: 'Catégorie supprimée avec succès'
+
+    post:
+        add: 'Ajouter un article'
+        edit: 'Modifier un article'
+        choice: 'Choisir un article'
+
+    tag:
+        add: 'Ajouter un tag'
+        edit: 'Modifier un tag'
+        choice: 'Choisir un tag'
+
+    category:
+        add: 'Ajouter une catégorie'
+        edit: 'Modifier une catégorie'
+        choice: 'Choisir une catégorie'
+
+    index:
+        title: 'Panel d''administration'
+        link:
+            post_index: 'Administration articles'
+            tag_index: 'Administration tags'
+            category_index: 'Administration catégories'

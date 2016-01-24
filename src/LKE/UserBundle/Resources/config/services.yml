@@ -1,0 +1,3 @@
+services:
+    lke_user.example:
+        class: LKE\UserBundle\Example

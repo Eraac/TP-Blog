@@ -1,0 +1,15 @@
+{% extends "LKECoreBundle::layout.html.twig" %}
+
+{% block body %}
+    {% include 'LKEBlogBundle:Template:post.html.twig' %}
+
+    {% if post.comments is not empty %}
+    <div class="col s12">
+        {% include 'LKEBlogBundle:Template:comments.html.twig' with {comments: post.comments} %}
+    </div>
+    {% endif %}
+
+    <div class="col s12">
+        {% include 'LKEBlogBundle:Comment:form.html.twig' with {form: formComment} %}
+    </div>
+{% endblock %}

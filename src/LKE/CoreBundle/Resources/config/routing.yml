@@ -1,0 +1,3 @@
+lke_core_index:
+    defaults: { _controller: LKECoreBundle:Home:index }
+    path: /

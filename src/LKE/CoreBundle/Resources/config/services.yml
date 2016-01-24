@@ -1,0 +1,16 @@
+services:
+    lke_core.get_entity:
+        class: LKE\CoreBundle\Service\GetEntity
+        arguments: ['@doctrine', '@security.authorization_checker']
+
+    lke_core.voter:
+        class: LKE\CoreBundle\Security\Voter
+        arguments: ['@security.access.decision_manager']
+        abstract: true
+        public: false
+
+    lke_core.warning_cookie_listener:
+        class: LKE\CoreBundle\Listener\WarningUseCookieListener
+        arguments: [@twig]
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: cookieConfirm }

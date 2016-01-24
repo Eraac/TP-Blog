@@ -1,0 +1,30 @@
+lkeblog:
+    post:
+        tags: "Tags"
+        category: "Catégorie"
+        author: "Auteur"
+        list:
+            comment: "Liste des commentaires"
+        comment: "{0}aucun commentaire|{1}%count% commentaire|]1,Inf[%count% commentaires"
+
+    list:
+        post:
+            title: "Liste des articles"
+        tag:
+            title: "Liste des tags"
+        category:
+            title: "Liste des catégories"
+
+    comment:
+        add:
+            title: "Ajouter un commentaire"
+
+    success:
+        comment:
+            add: "Commentaire ajouté avec succès"
+
+    category:
+        no_category: "Aucune catégorie"
+
+    tag:
+        no_tag: "Aucun tag"

@@ -1,0 +1,31 @@
+<div class="card {{ sizeCard|default("medium") }}">
+
+    <div class="card-image">
+        {% set image = "/upload/images/post/default.jpg" %} {# TODO hard value => very bad #}
+
+        {% if post.image is not null %}
+           {% set image = vich_uploader_asset(post.image, 'file', 'LKE\\CoreBundle\\Entity\\Image') %}
+        {% endif %}
+
+        <img class="activator" src="{{ image }}">
+        <span class="card-title">{{ post.title }}</span>
+    </div>
+
+    <div class="card-content">
+        <p>
+            {{ post.content|slice(0, 100) }}
+        </p>
+    </div>
+
+    <div class="card-action">
+        {% if post.category is not null %}
+            <a href="{{ url("lke_blog_category_view", {slug: post.category.slug}) }}">
+                <span class="badge">{{ post.category.name }}</span>
+            </a>
+        {% endif %}
+        <a href="{{ url('lke_blog_post_view', {slug: post.slug}) }}">Voir</a>
+        {% set countComment = post|countComment %}
+        <span>{{ "lkeblog.post.comment"|transchoice(countComment) }}</span>
+    </div>
+
+</div>

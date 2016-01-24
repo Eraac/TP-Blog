@@ -1,0 +1,19 @@
+{% extends 'LKEAdminBundle::layout.html.twig' %}
+
+{%- block content_title -%}
+    {{ 'lkeadmin.tag.choice'|trans }}
+{%- endblock -%}
+
+{% block body %}
+    {{ form(form) }}
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,5 @@
+{% for tag in tags %}
+    {% include 'LKEBlogBundle:Template:tag.html.twig' %}
+{% else %}
+    {{ "lkeblog.tag.no_tag"|trans }}
+{% endfor %}

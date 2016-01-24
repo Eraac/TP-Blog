@@ -1,0 +1,23 @@
+lke_admin:
+    resource: "@LKEAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+lke_core:
+    resource: "@LKECoreBundle/Resources/config/routing.yml"
+
+lke_blog:
+    resource: "@LKEBlogBundle/Resources/config/routing.yml"
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile
+
+lke_user:
+    resource: "@LKEUserBundle/Resources/config/routing.yml"

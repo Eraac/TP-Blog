@@ -1,0 +1,25 @@
+services:
+    lke_blog.post_voter:
+        class: LKE\BlogBundle\Security\PostVoter
+        parent: lke_core.voter
+        tags:
+            - { name: security.voter }
+
+    lke_blog.tag_voter:
+        class: LKE\BlogBundle\Security\TagVoter
+        parent: lke_core.voter
+        tags:
+            - { name: security.voter }
+
+    lke_blog.category_voter:
+        class: LKE\BlogBundle\Security\CategoryVoter
+        parent: lke_core.voter
+        tags:
+            - { name: security.voter }
+
+    lke_blog.twig_extension:
+        class: LKE\BlogBundle\Twig\LKEBlogExtension
+        public: false
+        arguments: [@doctrine]
+        tags:
+            - { name: twig.extension }

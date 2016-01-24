@@ -1,0 +1,9 @@
+{% extends 'LKECoreBundle::layout_with_title.html.twig' %}
+
+{% block content_title %}
+    {{ "lkeblog.list.category.title"|trans }}
+{% endblock %}
+
+{% block body %}
+    {% include 'LKEBlogBundle:Template:categories.html.twig' %}
+{% endblock %}

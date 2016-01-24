@@ -1,0 +1,29 @@
+lkeblog:
+    form:
+        submit: 'Envoyer'
+        edit: 'Modifier'
+        remove: 'Supprimer'
+
+        post:
+            title: 'Titre'
+            content: 'Contenu'
+            publishedAt: 'Date de publication'
+            category: 'Catégorie'
+            category_placeholder: 'Choisir une catégorie'
+            tags: 'Tags'
+            choice: 'Liste des articles'
+            choice_placeholder: 'Choisir un article'
+
+        tag:
+            choice: 'Liste des tags'
+            choice_placeholder: 'Choisir un tag'
+            name: 'Nom'
+
+        category:
+            choice: 'Liste des catégories'
+            choice_placeholder: 'Choisir une catégorie'
+            name: 'Nom'
+
+        comment:
+            username: 'Nom'
+            content: 'Commentaire'

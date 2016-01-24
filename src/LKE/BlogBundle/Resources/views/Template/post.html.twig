@@ -1,0 +1,72 @@
+<h2 class="green-text">{{ post.title }}</h2>
+
+{# helpers #}
+{% set hasCategory = post.category is not null %}
+{% set hasTags = post.tags is not empty %}
+{% set hasAuthor = post.author is not null %}
+
+<div class="col s8">
+    <div class="card">
+
+        <div class="card-image">
+            {% set image = "/upload/images/post/default.jpg" %} {# TODO hard value => very bad #}
+
+            {% if post.image is not null %}
+                {% set image = vich_uploader_asset(post.image, 'file', 'LKE\\CoreBundle\\Entity\\Image') %}
+            {% endif %}
+
+            <img src="{{ image }}">
+        </div>
+
+        <div class="card-content">
+            <p>
+                {{ post.content|nl2br }}
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<div class="col s4">
+    {% if hasCategory %}
+        <div class="col s12">
+            <div class="card-panel">
+                {{ "lkeblog.post.category"|trans }} :
+                {% include "LKEBlogBundle:Template:category.html.twig" with {category: post.category} %}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if hasTags %}
+        <div class="col s12">
+            <div class="card-panel">
+                {{ "lkeblog.post.tags"|trans }} :
+                {% include 'LKEBlogBundle:Template:tags.html.twig' with {tags: post.tags} %}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if hasAuthor %}
+        <div class="col s12">
+            <div class="card-panel">
+                {{ "lkeblog.post.author"|trans }} :
+                {% include "LKEUserBundle:Template:preview_user.html.twig" with {user: post.author} %}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if is_granted("ROLE_ADMIN") %}
+        <div class="col s12">
+            <div class="card-panel center">
+                <a class="btn" href="{{ url("lke_admin_post_edit", {id: post.id}) }}">
+                    {{ "lkecore.button.edit"|trans }}
+                </a>
+
+                <a class="btn red" href="{{ url("lke_admin_post_remove", {id: post.id}) }}">
+                    {{ "lkecore.button.remove"|trans }}
+                </a>
+            </div>
+        </div>
+    {% endif %}
+</div>
+

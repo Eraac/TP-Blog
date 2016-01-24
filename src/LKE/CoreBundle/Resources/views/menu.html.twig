@@ -1,0 +1,21 @@
+<nav>
+    <div class="nav-wrapper">
+        <div class="container">
+            <a href="{{ url('lke_core_index') }}" class="brand-logo">LPDW Blog</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{{ url("lke_blog_post_list") }}">{{ 'lkecore.nav.articles'|trans }}</a></li>
+                <li><a href="{{ url("lke_blog_tag_list") }}">{{ 'lkecore.nav.tags'|trans }}</a></li>
+                <li><a href="{{ url("lke_blog_category_list") }}">{{ 'lkecore.nav.categories'|trans }}</a></li>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <li><a href="{{ url("lke_admin_index") }}">{{ 'lkecore.nav.admin_dashboard'|trans }}</a></li>
+                {% endif %}
+                {% if is_granted("ROLE_USER") %}
+                    <li><a href="{{ url('fos_user_profile_show') }}">{{ 'lkecore.nav.welcome'|trans }}, {{ app.user }}</a></li>
+                    <li><a href="{{ url('fos_user_security_logout') }}">{{ 'lkecore.nav.logout'|trans }}</a></li>
+                {% else %}
+                    <li><a href="{{ url('fos_user_security_login') }}">{{ 'lkecore.nav.login'|trans }}</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

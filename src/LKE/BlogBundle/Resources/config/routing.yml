@@ -1,0 +1,31 @@
+# == POST ==
+lke_blog_post_list:
+    path:     /post
+    defaults: { _controller: LKEBlogBundle:Post:list }
+
+lke_blog_post_view:
+    path:     /post/{slug}
+    defaults: { _controller: LKEBlogBundle:Post:view }
+
+lke_blog_post_comment:
+    path:     /post/{slug}/comment
+    defaults: { _controller: LKEBlogBundle:Post:addComment }
+    methods: ["POST"]
+
+# == TAG ==
+lke_blog_tag_list:
+    path:     /tag
+    defaults: { _controller: LKEBlogBundle:Tag:list }
+
+lke_blog_tag_view:
+    path:     /tag/{slug}
+    defaults: { _controller: LKEBlogBundle:Tag:view }
+
+# == CATEGORY ==
+lke_blog_category_list:
+    path:     /category
+    defaults: { _controller: LKEBlogBundle:Category:list }
+
+lke_blog_category_view:
+    path:     /category/{slug}
+    defaults: { _controller: LKEBlogBundle:Category:view }

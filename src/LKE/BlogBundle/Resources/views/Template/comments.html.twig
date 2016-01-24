@@ -1,0 +1,16 @@
+<h4>{{ "lkeblog.post.list.comment"|trans }}</h4>
+
+<ul class="collection">
+    {% for comment in comments %}
+        <li class="collection-item">
+            <span class="title">
+                {{ comment.username }}
+                <span class="badge">{{ comment.createdAt|date("d-m-Y h:i") }}</span>
+            </span>
+
+            <p>
+                {{ comment.content }}
+            </p>
+        </li>
+    {% endfor %}
+</ul>

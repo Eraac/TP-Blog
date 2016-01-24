@@ -1,0 +1,18 @@
+lkecore:
+    nav:
+        articles: Articles
+        tags: Tags
+        categories: Catégories
+        admin_dashboard: 'Panel d''administration'
+        logout: 'Se déconnecter'
+        login: 'Se connecter'
+        welcome: Bonjour
+    homepage:
+        title: 'Les 5 derniers articles'
+        no_post: 'Aucun articles'
+    button:
+        edit: "Modifier"
+        remove: "Supprimer"
+        accept: "Accepter"
+    warning:
+        cookie: "Nous utilisons des cookies pour vous garantir la meilleure expérience sur notre site. Si vous continuez à utiliser ce dernier, nous considérerons que vous acceptez l'utilisation des cookies."

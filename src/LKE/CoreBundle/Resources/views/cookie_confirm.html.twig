@@ -1,0 +1,24 @@
+{% if not app.request.cookies.has("acceptCookie")%}
+<div id="acceptCookie" class="col s12 black white-text center">
+    {{ "lkecore.warning.cookie"|trans }}
+    <button style="margin: 5px 0" id="acceptCookieButton" class="waves-effect btn">{{ "lkecore.button.accept"|trans }}</button>
+    {# use style="" is dirty, yes but design is not in the exercise #}
+</div>
+
+<script>
+    {# no use jQuery because is loaded later #}
+    var acceptCookie = document.querySelector("#acceptCookieButton");
+
+    acceptCookie.addEventListener('click', function() {
+        setCookie("acceptCookie", true, 1);
+        document.querySelector("#acceptCookie").className = "hide";
+    })
+
+    function setCookie(key, value, days) {
+        var d = new Date();
+        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = key + "=" + value + "; " + expires;
+    }
+</script>
+{% endif %}

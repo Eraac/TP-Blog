@@ -1,0 +1,13 @@
+{% extends 'LKEAdminBundle::layout.html.twig' %}
+
+{%- block content_title -%}
+    {{ 'lkeadmin.index.title'|trans }}
+{%- endblock -%}
+
+{% block body %}
+    <div class="collection">
+        <a class="collection-item" href="{{ url("lke_admin_post_index") }}">{{ "lkeadmin.index.link.post_index"|trans }}</a>
+        <a class="collection-item" href="{{ url("lke_admin_tag_index") }}">{{ "lkeadmin.index.link.tag_index"|trans }}</a>
+        <a class="collection-item" href="{{ url("lke_admin_category_index") }}">{{ "lkeadmin.index.link.category_index"|trans }}</a>
+    </div>
+{% endblock %}

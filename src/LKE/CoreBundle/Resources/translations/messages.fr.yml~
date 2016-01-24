@@ -1,0 +1,8 @@
+lkecore:
+    nav:
+        articles: Articles
+        tags: Tags
+        categories: Catégories
+        admin_dashboard: Panel d'administration
+        logout: Se déconnecter
+        login: Se connecter

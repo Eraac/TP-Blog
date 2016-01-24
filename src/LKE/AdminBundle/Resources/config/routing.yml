@@ -1,0 +1,54 @@
+lke_admin_index:
+    path:     /
+    defaults: { _controller: LKEAdminBundle:Admin:index }
+
+# === POST ===
+lke_admin_post_index:
+    path:     /post
+    defaults: { _controller: LKEAdminBundle:Post:index }
+
+lke_admin_post_add:
+    path:     /post/add
+    defaults: { _controller: LKEAdminBundle:Post:add }
+
+lke_admin_post_edit:
+    path:     /post/edit/{id}
+    defaults: { _controller: LKEAdminBundle:Post:edit }
+
+lke_admin_post_remove:
+    path:     /post/remove/{id}
+    defaults: { _controller: LKEAdminBundle:Post:remove }
+
+# === TAG ===
+lke_admin_tag_index:
+    path:     /tag
+    defaults: { _controller: LKEAdminBundle:Tag:index }
+
+lke_admin_tag_add:
+    path:     /tag/add
+    defaults: { _controller: LKEAdminBundle:Tag:add }
+
+lke_admin_tag_edit:
+    path:     /tag/edit/{id}
+    defaults: { _controller: LKEAdminBundle:Tag:edit }
+
+lke_admin_tag_remove:
+    path:     /tag/remove/{id}
+    defaults: { _controller: LKEAdminBundle:Tag:remove }
+
+# === CATEGORY ===
+lke_admin_category_index:
+    path:     /category
+    defaults: { _controller: LKEAdminBundle:Category:index }
+
+lke_admin_category_add:
+    path:     /category/add
+    defaults: { _controller: LKEAdminBundle:Category:add }
+
+lke_admin_category_edit:
+    path:     /category/edit/{id}
+    defaults: { _controller: LKEAdminBundle:Category:edit }
+
+lke_admin_category_remove:
+    path:     /category/remove/{id}
+    defaults: { _controller: LKEAdminBundle:Category:remove }

@@ -1,0 +1,10 @@
+<div class="collection">
+    {% for category in categories %}
+        <a href="{{ url("lke_blog_category_view", {slug: category.slug}) }}" class="collection-item">
+            {{ category.name }}
+            <span class="badge">{{ category|countPost }}</span>
+        </a>
+    {% else %}
+        {{ "lkeblog.category.no_category"|trans }}
+    {% endfor %}
+</div>
