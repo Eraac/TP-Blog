@@ -3,6 +3,9 @@ services:
         class: LKE\CoreBundle\Service\GetEntity
         arguments: ['@doctrine', '@security.authorization_checker']
 
+    lke_core.parse_csv:
+        class: LKE\CoreBundle\Service\ParseCSV
+
     lke_core.voter:
         class: LKE\CoreBundle\Security\Voter
         arguments: ['@security.access.decision_manager']
