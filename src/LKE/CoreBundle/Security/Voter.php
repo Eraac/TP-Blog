@@ -31,9 +31,10 @@ class Voter extends BaseVoter
         }
 
         $user = $token->getUser();
+        $method = 'can' . ucfirst($attribute);
 
-        if (method_exists($this, $attribute)) {
-            return $this->$attribute($subject, $user);
+        if (method_exists($this, $method)) {
+            return $this->$method($subject, $user);
         }
 
         throw new \LogicException('This code should not be reached!');
