@@ -88,7 +88,7 @@ vich_uploader:
     mappings:
         post_image:
             uri_prefix:         /upload/images/post
-            upload_destination: %kernel.root_dir%/../web/upload/images/post
+            upload_destination: %upload_dir%/images/post
             inject_on_load:     false
             delete_on_update:   true
             delete_on_remove:   true
