@@ -1,3 +1,6 @@
 services:
-    lke_user.example:
-        class: LKE\UserBundle\Example
+    lke_user.user_voter:
+        class: LKE\UserBundle\Security\UserVoter
+        parent: lke_core.voter
+        tags:
+            - { name: security.voter }

@@ -3,3 +3,6 @@ lkeuser:
         title: 'Profil'
         change-password: 'Changer de mot de passe'
         edit: 'Modifer son profil'
+    list:
+        user:
+            title: 'Liste des utilisateurs'

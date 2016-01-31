@@ -1,5 +1,9 @@
 {% extends 'LKECoreBundle::layout_with_title.html.twig' %}
 
+{%- block content_title -%}
+    {{ "lkeblog.list.post.title"|trans }}
+{%- endblock -%}
+
 {% block body %}
 
     {% for post in pagination %}

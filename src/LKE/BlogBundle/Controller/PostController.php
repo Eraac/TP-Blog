@@ -12,7 +12,7 @@ use Symfony\Component\Form\Form;
 
 class PostController extends CoreController
 {
-    const MAX_ARTICLE_PER_PAGE = 10;
+    const MAX_POST_PER_PAGE = 10;
 
     public function listAction(Request $request)
     {
@@ -20,9 +20,9 @@ class PostController extends CoreController
         $page = $request->query->getInt('page', 1);
 
         $pagination = $paginator->paginate(
-            $this->getRepository()->queryListPublishedPost(self::MAX_ARTICLE_PER_PAGE, $page),
+            $this->getRepository()->queryListPublishedPost(self::MAX_POST_PER_PAGE, $page),
             $page,
-            self::MAX_ARTICLE_PER_PAGE
+            self::MAX_POST_PER_PAGE
         );
 
         return $this->render("LKEBlogBundle:Post:list.html.twig", [

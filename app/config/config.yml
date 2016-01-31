@@ -5,7 +5,7 @@ imports:
     - { resource: "@LKECoreBundle/Resources/config/services.yml" }
     - { resource: "@LKEAdminBundle/Resources/config/services.yml" }
     - { resource: "@LKEBlogBundle/Resources/config/services.yml" }
-    #- { resource: "@LKEUserBundle/Resources/config/services.yml" }
+    - { resource: "@LKEUserBundle/Resources/config/services.yml" }
 
 framework:
     #esi:             ~

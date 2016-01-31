@@ -4,6 +4,7 @@ namespace LKE\BlogBundle\Repository;
 
 use LKE\BlogBundle\Entity\Category;
 use LKE\BlogBundle\Entity\Tag;
+use LKE\UserBundle\Entity\User;
 
 /**
  * PostRepository
@@ -80,6 +81,16 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $qb;
     }
 
+    private function byAuthor(User $author, $qb = null)
+    {
+        $qb = $this->getQb($qb)
+            ->leftJoin("p.author", "a")
+            ->andWhere("a = :author")
+            ->setParameter("author", $author);
+
+        return $qb;
+    }
+
     private function pagine($limit, $page, $qb = null)
     {
         $qb = $this->getQb($qb)
@@ -144,5 +155,14 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         $qb->select("COUNT(p)");
 
         return $qb->getQuery()->getSingleScalarResult();
+    }
+
+    public function queryListPostPreviewByAuthor(User $author, $limit, $page)
+    {
+        $qb = $this->previewPost();
+        $qb = $this->byAuthor($author, $qb);
+        $qb = $this->pagine($limit, $page, $qb);
+
+        return $qb;
     }
 }

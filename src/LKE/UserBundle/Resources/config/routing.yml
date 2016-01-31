@@ -1,0 +1,7 @@
+lke_user_list:
+    path:     /user
+    defaults: { _controller: LKEUserBundle:User:list }
+
+lke_user_view:
+    path:     /user/{id}
+    defaults: { _controller: LKEUserBundle:User:view }

@@ -10,6 +10,7 @@ lkeblog:
     list:
         post:
             title: "Liste des articles"
+        no_posts: "Aucun article"
         tag:
             title: "Liste des tags"
         category:
