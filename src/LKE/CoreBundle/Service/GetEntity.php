@@ -23,14 +23,18 @@ class GetEntity
 
         $method = $options['method'];
 
-        $entity = (method_exists($repo, $method)) ? $repo->$method($id) : null;
+        if (!method_exists($repo, $method)) {
+            throw new \LogicException("Method : '" . $method . "' in repository : '" . $options['repository'] . "' does not exist");
+        }
+
+        $entity = $repo->$method($id);
 
         if (is_null($entity)) {
-            throw new NotFoundHttpException('Sorry ' . $options['repository'] . ' : \'' . $id . '\' not exist'); // TODO Monolog ?
+            throw new NotFoundHttpException('Sorry ' . $options['repository'] . ' : \'' . $id . '\' does not exist');
         }
 
         if (!$this->security->isGranted($access, $entity)) {
-            throw new AccessDeniedException(); // TODO Monolog ?
+            throw new AccessDeniedException();
         }
 
         return $entity;
