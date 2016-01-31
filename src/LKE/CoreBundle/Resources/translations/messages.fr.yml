@@ -16,3 +16,8 @@ lkecore:
         accept: "Accepter"
     warning:
         cookie: "Nous utilisons des cookies pour vous garantir la meilleure expérience sur notre site. Si vous continuez à utiliser ce dernier, nous considérerons que vous acceptez l'utilisation des cookies."
+    error:
+        sorry: 'Désolé, une erreur est survenu'
+        server: 'Le serveur a rencontré une erreur :''('
+        notfound: 'Impossible de trouver la ressource demandée'
+        unauthorized: 'Désolé, vous n''avez pas accès à cette ressource'
