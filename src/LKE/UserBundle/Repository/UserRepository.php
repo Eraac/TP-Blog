@@ -10,6 +10,11 @@ namespace LKE\UserBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param int $limit
+     * @param int $page
+     * @return \Doctrine\ORM\QueryBuilder
+     */
     public function queryListUser($limit, $page)
     {
         return $this->createQueryBuilder('u')

@@ -21,6 +21,10 @@ class ImageCommand extends ContainerAwareCommand
         ;
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $em = $this->getContainer()->get('doctrine')->getManager();
@@ -41,6 +45,11 @@ class ImageCommand extends ContainerAwareCommand
         $output->writeln("Images loaded");
     }
 
+    /**
+     * @param string $filename
+     * @param string $name
+     * @return string
+     */
     private function getImage($filename, $name)
     {
         $path = $this->getContainer()->getParameter("upload_dir") . "images/post/";

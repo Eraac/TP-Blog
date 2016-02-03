@@ -26,6 +26,10 @@ class PostCommand extends ContainerAwareCommand
         ;
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $em = $this->getContainer()->get('doctrine')->getManager();
@@ -63,26 +67,46 @@ class PostCommand extends ContainerAwareCommand
         $output->writeln("Posts loaded");
     }
 
+    /**
+     * @param $datetime
+     * @return \DateTime|null
+     */
     private function getDateTime($datetime)
     {
         return (empty($datetime)) ? null : \DateTime::createFromFormat("d/m/Y H:i:s", $datetime);
     }
 
+    /**
+     * @param $id
+     * @return \LKE\BlogBundle\Entity\Tag|null
+     */
     private function getTag($id)
     {
         return $this->getContainer()->get('doctrine')->getRepository("LKEBlogBundle:Tag")->find($id);
     }
 
+    /**
+     * @param $id
+     * @return \LKE\BlogBundle\Entity\Category|null
+     */
     private function getCategory($id)
     {
         return $this->getContainer()->get('doctrine')->getRepository("LKEBlogBundle:Category")->find($id);
     }
 
+    /**
+     * @param $id
+     * @return \LKE\UserBundle\Entity\User|null
+     */
     private function getAuthor($id)
     {
         return $this->getContainer()->get('doctrine')->getRepository("LKEUserBundle:User")->find($id);
     }
 
+    /**
+     * @param $id
+     * @return \LKE\CoreBundle\Entity\Image|null
+     */
     private function getImage($id)
     {
         return $this->getContainer()->get('doctrine')->getRepository("LKECoreBundle:Image")->find($id);

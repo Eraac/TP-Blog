@@ -47,7 +47,7 @@ abstract class CoreController extends Controller
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @param $access
      * @param array $options
      * @return mixed

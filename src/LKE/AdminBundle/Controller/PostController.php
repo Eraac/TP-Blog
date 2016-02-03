@@ -13,6 +13,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PostController extends CoreController
 {
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction(Request $request)
     {
         $choicePost = new ChoicePost();
@@ -21,6 +25,10 @@ class PostController extends CoreController
         return $this->processChoiceList($form, $choicePost);
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function addAction(Request $request)
     {
         $post = new Post();
@@ -40,6 +48,11 @@ class PostController extends CoreController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function editAction(Request $request, $id)
     {
         $post = $this->getEntity($id, Voter::EDIT);
@@ -58,6 +71,10 @@ class PostController extends CoreController
         }
     }
 
+    /**
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function removeAction($id)
     {
         $post = $this->getEntity($id, Voter::DELETE);
@@ -71,6 +88,11 @@ class PostController extends CoreController
         return $this->redirectToRoute('lke_admin_index');
     }
 
+    /**
+     * @param Post $post
+     * @param Request $request
+     * @return Form
+     */
     private function generateForm(Post $post, Request $request)
     {
         $form = $this->createForm(new PostType(), $post);
@@ -79,6 +101,11 @@ class PostController extends CoreController
         return $form;
     }
 
+    /**
+     * @param Form $form
+     * @param Post $post
+     * @return bool
+     */
     private function processForm(Form $form, Post $post)
     {
         if ($form->isValid())
@@ -93,6 +120,11 @@ class PostController extends CoreController
         return false;
     }
 
+    /**
+     * @param ChoicePost $choicePost
+     * @param Request $request
+     * @return Form
+     */
     private function generateChoiceList(ChoicePost $choicePost, Request $request)
     {
         $form = $this->createForm(new ChoicePostType(), $choicePost);
@@ -101,6 +133,11 @@ class PostController extends CoreController
         return $form;
     }
 
+    /**
+     * @param Form $form
+     * @param ChoicePost $choicePost
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     private function processChoiceList(Form $form, ChoicePost $choicePost)
     {
         if ($form->isValid())
@@ -116,6 +153,9 @@ class PostController extends CoreController
         ]);
     }
 
+    /**
+     * @return string
+     */
     protected function getRepositoryName()
     {
         return "LKEBlogBundle:Post";

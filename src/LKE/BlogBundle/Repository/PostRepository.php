@@ -2,6 +2,7 @@
 
 namespace LKE\BlogBundle\Repository;
 
+use Doctrine\ORM\QueryBuilder;
 use LKE\BlogBundle\Entity\Category;
 use LKE\BlogBundle\Entity\Tag;
 use LKE\UserBundle\Entity\User;
@@ -14,12 +15,20 @@ use LKE\UserBundle\Entity\User;
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
-    private function getQb($qb = null)
+    /**
+     * @param QueryBuilder|null $qb
+     * @return QueryBuilder
+     */
+    private function getQb(QueryBuilder $qb = null)
     {
         return is_null($qb) ? $this->createQueryBuilder('p') : $qb;
     }
 
-    private function qbForPublishedPost($qb = null)
+    /**
+     * @param QueryBuilder|null $qb
+     * @return QueryBuilder
+     */
+    private function qbForPublishedPost(QueryBuilder $qb = null)
     {
         $now = new \DateTime();
 
@@ -31,7 +40,12 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $qb;
     }
 
-    private function bySlug($slug, $qb = null)
+    /**
+     * @param $slug
+     * @param QueryBuilder|null $qb
+     * @return QueryBuilder
+     */
+    private function bySlug($slug, QueryBuilder $qb = null)
     {
         $qb = $this->getQb($qb)
                     ->andWhere("p.slug = :slug")
@@ -40,7 +54,11 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $qb;
     }
 
-    private function previewPost($qb = null)
+    /**
+     * @param QueryBuilder|null $qb
+     * @return QueryBuilder
+     */
+    private function previewPost(QueryBuilder $qb = null)
     {
         $qb = $this->qbForPublishedPost($qb)
                     ->leftJoin('p.image', 'i')
@@ -51,7 +69,11 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $qb;
     }
 
-    private function fullPost($qb = null)
+    /**
+     * @param QueryBuilder|null $qb
+     * @return QueryBuilder
+     */
+    private function fullPost(QueryBuilder $qb = null)
     {
         $qb = $this->previewPost($qb)
                     ->leftJoin('p.tags', 't')
@@ -62,7 +84,12 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $qb;
     }
 
-    private function byTag(Tag $tag, $qb = null)
+    /**
+     * @param Tag $tag
+     * @param QueryBuilder|null $qb
+     * @return QueryBuilder
+     */
+    private function byTag(Tag $tag, QueryBuilder $qb = null)
     {
         $qb = $this->getQb($qb)
                     ->leftJoin("p.tags", 't')
@@ -72,7 +99,12 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $qb;
     }
 
-    private function byCategory(Category $category, $qb = null)
+    /**
+     * @param Category $category
+     * @param QueryBuilder|null $qb
+     * @return QueryBuilder
+     */
+    private function byCategory(Category $category, QueryBuilder $qb = null)
     {
         $qb = $this->getQb($qb)
             ->andWhere("c = :category")
@@ -81,7 +113,12 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $qb;
     }
 
-    private function byAuthor(User $author, $qb = null)
+    /**
+     * @param User $author
+     * @param QueryBuilder|null $qb
+     * @return QueryBuilder
+     */
+    private function byAuthor(User $author, QueryBuilder $qb = null)
     {
         $qb = $this->getQb($qb)
             ->leftJoin("p.author", "a")
@@ -91,7 +128,13 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $qb;
     }
 
-    private function pagine($limit, $page, $qb = null)
+    /**
+     * @param int $limit
+     * @param int $page
+     * @param QueryBuilder|null $qb
+     * @return QueryBuilder
+     */
+    private function pagine($limit, $page, QueryBuilder $qb = null)
     {
         $qb = $this->getQb($qb)
                 ->setMaxResults($limit)
@@ -100,6 +143,10 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $qb;
     }
 
+    /**
+     * @param int $limit
+     * @return array
+     */
     public function findLastPublishedPost($limit = 5)
     {
         $qb = $this->queryListPublishedPost($limit, 1);
@@ -107,6 +154,11 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    /**
+     * @param int $limit
+     * @param int $page
+     * @return QueryBuilder
+     */
     public function queryListPublishedPost($limit, $page)
     {
         $qb = $this->qbForPublishedPost();
@@ -116,6 +168,11 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $qb;
     }
 
+    /**
+     * @param $slug
+     * @return \LKE|BlogBundle\Entity\Post|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function findFullBySlug($slug)
     {
         $qb = $this->fullPost();
@@ -124,6 +181,11 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getOneOrNullResult();
     }
 
+    /**
+     * @param string $slug
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function findBySlug($slug)
     {
         $qb = $this->bySlug($slug);
@@ -131,6 +193,10 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getOneOrNullResult();
     }
 
+    /**
+     * @param Tag $tag
+     * @return array
+     */
     public function findPreviewByTag(Tag $tag)
     {
         $qb = $this->previewPost();
@@ -139,6 +205,10 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    /**
+     * @param Category $category
+     * @return array
+     */
     public function findPreviewByCategory(Category $category)
     {
         $qb = $this->previewPost();
@@ -147,6 +217,10 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    /**
+     * @param Category $category
+     * @return int
+     */
     public function countPostPerCategory(Category $category)
     {
         $qb = $this->qbForPublishedPost()
@@ -157,6 +231,12 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getSingleScalarResult();
     }
 
+    /**
+     * @param User $author
+     * @param int $limit
+     * @param int $page
+     * @return QueryBuilder
+     */
     public function queryListPostPreviewByAuthor(User $author, $limit, $page)
     {
         $qb = $this->previewPost();

@@ -14,6 +14,10 @@ class PostController extends CoreController
 {
     const MAX_POST_PER_PAGE = 10;
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function listAction(Request $request)
     {
         $paginator  = $this->get('knp_paginator');
@@ -30,6 +34,11 @@ class PostController extends CoreController
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param $slug
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function viewAction(Request $request, $slug)
     {
         $post = $this->getEntity($slug, Voter::VIEW, ["method" => "findFullBySlug"]);
@@ -42,6 +51,11 @@ class PostController extends CoreController
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param $slug
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function addCommentAction(Request $request, $slug)
     {
         $comment = new Comment();
@@ -54,6 +68,11 @@ class PostController extends CoreController
         return $this->processCommentForm($form, $comment, $request);
     }
 
+    /**
+     * @param Comment $comment
+     * @param Request $request
+     * @return Form
+     */
     private function generateCommentForm(Comment $comment, Request $request)
     {
         $form = $this->createForm(new CommentType(), $comment);
@@ -62,6 +81,12 @@ class PostController extends CoreController
         return $form;
     }
 
+    /**
+     * @param Form $form
+     * @param Comment $comment
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     private function processCommentForm(Form $form, Comment $comment, Request $request)
     {
         $slug = $comment->getPost()->getSlug();
@@ -81,6 +106,9 @@ class PostController extends CoreController
         return $this->viewAction($request, $slug);
     }
 
+    /**
+     * @return string
+     */
     protected function getRepositoryName()
     {
         return "LKEBlogBundle:Post";

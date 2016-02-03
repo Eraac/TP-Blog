@@ -16,6 +16,10 @@ class TagController extends CoreController
         ]);
     }
 
+    /**
+     * @param $slug
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function viewAction($slug)
     {
         $tag = $this->getEntity($slug, Voter::VIEW, ['method' => 'findBySlug']);
@@ -27,6 +31,9 @@ class TagController extends CoreController
         ]);
     }
 
+    /**
+     * @return string
+     */
     protected function getRepositoryName()
     {
         return "LKEBlogBundle:Tag";

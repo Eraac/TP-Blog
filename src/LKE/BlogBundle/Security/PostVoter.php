@@ -3,13 +3,17 @@
 namespace LKE\BlogBundle\Security;
 
 use LKE\CoreBundle\Security\Voter as BaseVoter;
-use LKE\UserBundle\Entity\User;
 use LKE\BlogBundle\Entity\Post;
 
 class PostVoter extends BaseVoter
 {
     const COMMENT = 'comment';
 
+    /**
+     * @param string $attribute
+     * @param mixed $subject
+     * @return bool
+     */
     protected function supports($attribute, $subject)
     {
         return (parent::supports($attribute, $subject) || $attribute === self::COMMENT) && $subject instanceof Post;
@@ -17,7 +21,7 @@ class PostVoter extends BaseVoter
 
     /**
      * @param Post $post
-     * @param User $user
+     * @param \LKE\UserBundle\Entity\User $user
      * @return bool
      */
     protected function canView($post, $user)
@@ -27,7 +31,7 @@ class PostVoter extends BaseVoter
 
     /**
      * @param Post $post
-     * @param User $user
+     * @param \LKE\UserBundle\Entity\User $user
      * @return bool
      */
     protected function canComment($post, $user)

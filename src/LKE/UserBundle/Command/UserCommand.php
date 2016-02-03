@@ -22,6 +22,10 @@ class UserCommand extends ContainerAwareCommand
         ;
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $userManager = $this->getContainer()->get('fos_user.user_manager');

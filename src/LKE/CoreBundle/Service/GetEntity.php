@@ -11,12 +11,22 @@ class GetEntity
     private $doctrine;
     private $security;
 
+    /**
+     * @param $doctrine
+     * @param AuthorizationChecker $security
+     */
     public function __construct($doctrine, AuthorizationChecker $security)
     {
         $this->doctrine = $doctrine;
         $this->security = $security;
     }
 
+    /**
+     * @param int $id
+     * @param $access
+     * @param array $options
+     * @return object|null
+     */
     public function get($id, $access, array $options)
     {
         $repo = $this->getRepository($options['repository']);
@@ -40,6 +50,10 @@ class GetEntity
         return $entity;
     }
 
+    /**
+     * @param $name
+     * @return mixed
+     */
     private function getRepository($name)
     {
         return $this->doctrine->getRepository($name);

@@ -3,11 +3,15 @@
 namespace LKE\BlogBundle\Security;
 
 use LKE\CoreBundle\Security\Voter as BaseVoter;
-use LKE\UserBundle\Entity\User;
 use LKE\BlogBundle\Entity\Category;
 
 class CategoryVoter extends BaseVoter
 {
+    /**
+     * @param string $attribute
+     * @param mixed $subject
+     * @return bool
+     */
     protected function supports($attribute, $subject)
     {
         return parent::supports($attribute, $subject) && $subject instanceof Category;
@@ -15,7 +19,7 @@ class CategoryVoter extends BaseVoter
 
     /**
      * @param Category $category
-     * @param User $user
+     * @param \LKE\UserBundle\Entity\User $user
      * @return bool
      */
     protected function canView($category, $user)

@@ -2,6 +2,7 @@
 
 namespace LKE\BlogBundle\Repository;
 
+use Doctrine\ORM\QueryBuilder;
 use LKE\BlogBundle\Entity\Post;
 
 /**
@@ -12,12 +13,21 @@ use LKE\BlogBundle\Entity\Post;
  */
 class CommentRepository extends \Doctrine\ORM\EntityRepository
 {
-    private function getQb($qb = null)
+    /**
+     * @param QueryBuilder|null $qb
+     * @return QueryBuilder
+     */
+    private function getQb(QueryBuilder $qb = null)
     {
         return is_null($qb) ? $this->createQueryBuilder('c') : $qb;
     }
 
-    private function byPost(Post $post, $qb = null)
+    /**
+     * @param Post $post
+     * @param QueryBuilder|null $qb
+     * @return QueryBuilder
+     */
+    private function byPost(Post $post, QueryBuilder $qb = null)
     {
         $qb = $this->getQb($qb)
             ->andWhere("c.post = :post")
@@ -26,6 +36,10 @@ class CommentRepository extends \Doctrine\ORM\EntityRepository
         return $qb;
     }
 
+    /**
+     * @param Post $post
+     * @return int
+     */
     public function countComment(Post $post)
     {
         $qb = $this->byPost($post)

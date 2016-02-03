@@ -22,6 +22,10 @@ class CommentCommand extends ContainerAwareCommand
         ;
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $em = $this->getContainer()->get('doctrine')->getManager();
@@ -45,6 +49,10 @@ class CommentCommand extends ContainerAwareCommand
         $output->writeln("Comments loaded");
     }
 
+    /**
+     * @param $id
+     * @return \LKE\BlogBundle\Entity\Post|null
+     */
     private function getPost($id)
     {
         return $this->getContainer()->get('doctrine')->getRepository("LKEBlogBundle:Post")->find($id);

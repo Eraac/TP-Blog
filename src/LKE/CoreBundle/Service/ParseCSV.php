@@ -4,6 +4,12 @@ namespace LKE\CoreBundle\Service;
 
 class ParseCSV
 {
+    /**
+     * @param string $filename
+     * @param string $separator
+     * @param bool|true $ignoreFirstLine
+     * @return array
+     */
     public function parse($filename, $separator = ',', $ignoreFirstLine = true)
     {
         $csv = $this->getFile($filename);
@@ -27,6 +33,10 @@ class ParseCSV
         return $rows;
     }
 
+    /**
+     * @param string $filename
+     * @return resource
+     */
     private function getFile($filename)
     {
         $csvString = file_get_contents($filename);

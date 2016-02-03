@@ -12,6 +12,10 @@ class UserController extends CoreController
     const MAX_USER_PER_PAGE = 100;
     const MAX_POST_PER_PAGE = 10;
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function listAction(Request $request)
     {
         $paginator  = $this->get('knp_paginator');
@@ -28,6 +32,11 @@ class UserController extends CoreController
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param int $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function viewAction(Request $request, $id)
     {
         $user = $this->getEntity($id, Voter::VIEW);
@@ -48,6 +57,9 @@ class UserController extends CoreController
         ]);
     }
 
+    /**
+     * @return string
+     */
     protected function getRepositoryName()
     {
         return "LKEUserBundle:User";

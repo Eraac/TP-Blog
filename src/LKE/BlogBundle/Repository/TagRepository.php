@@ -2,6 +2,8 @@
 
 namespace LKE\BlogBundle\Repository;
 
+use Doctrine\ORM\QueryBuilder;
+
 /**
  * TagRepository
  *
@@ -10,12 +12,21 @@ namespace LKE\BlogBundle\Repository;
  */
 class TagRepository extends \Doctrine\ORM\EntityRepository
 {
-    private function getQb($qb = null)
+    /**
+     * @param QueryBuilder $qb
+     * @return QueryBuilder|null
+     */
+    private function getQb(QueryBuilder $qb = null)
     {
         return is_null($qb) ? $this->createQueryBuilder('t') : $qb;
     }
 
-    private function bySlug($slug, $qb = null)
+    /**
+     * @param string $slug
+     * @param QueryBuilder|null $qb
+     * @return QueryBuilder|null
+     */
+    private function bySlug($slug, QueryBuilder $qb = null)
     {
         $qb = $this->getQb($qb)
                     ->andWhere("t.slug = :slug")
@@ -24,6 +35,11 @@ class TagRepository extends \Doctrine\ORM\EntityRepository
         return $qb;
     }
 
+    /**
+     * @param string $slug
+     * @return \LKE\BlogBundle\Entity\Tag|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function findBySlug($slug)
     {
         $qb = $this->bySlug($slug);

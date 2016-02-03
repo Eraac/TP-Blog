@@ -13,6 +13,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 class TagController extends CoreController
 {
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction(Request $request)
     {
         $choiceTag = new ChoiceTag();
@@ -21,6 +25,10 @@ class TagController extends CoreController
         return $this->processChoiceList($form, $choiceTag);
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function addAction(Request $request)
     {
         $tag = new Tag();
@@ -39,6 +47,11 @@ class TagController extends CoreController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function editAction(Request $request, $id)
     {
         $tag = $this->getEntity($id, Voter::EDIT);
@@ -57,6 +70,10 @@ class TagController extends CoreController
         }
     }
 
+    /**
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function removeAction($id)
     {
         $tag = $this->getEntity($id, Voter::DELETE);
@@ -70,6 +87,11 @@ class TagController extends CoreController
         return $this->redirectToRoute('lke_admin_index');
     }
 
+    /**
+     * @param Tag $tag
+     * @param Request $request
+     * @return Form
+     */
     private function generateForm(Tag $tag, Request $request)
     {
         $form = $this->createForm(new TagType(), $tag);
@@ -78,6 +100,11 @@ class TagController extends CoreController
         return $form;
     }
 
+    /**
+     * @param Form $form
+     * @param Tag $tag
+     * @return bool
+     */
     private function processForm(Form $form, Tag $tag)
     {
         if ($form->isValid())
@@ -92,6 +119,11 @@ class TagController extends CoreController
         return false;
     }
 
+    /**
+     * @param ChoiceTag $choiceTag
+     * @param Request $request
+     * @return Form
+     */
     private function generateChoiceList(ChoiceTag $choiceTag, Request $request)
     {
         $form = $this->createForm(new ChoiceTagType(), $choiceTag);
@@ -100,6 +132,11 @@ class TagController extends CoreController
         return $form;
     }
 
+    /**
+     * @param Form $form
+     * @param ChoiceTag $choiceTag
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     private function processChoiceList(Form $form, ChoiceTag $choiceTag)
     {
         if ($form->isValid())
@@ -115,6 +152,9 @@ class TagController extends CoreController
         ]);
     }
 
+    /**
+     * @return string
+     */
     protected function getRepositoryName()
     {
         return "LKEBlogBundle:Tag";

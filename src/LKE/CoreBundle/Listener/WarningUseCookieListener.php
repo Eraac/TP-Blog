@@ -13,6 +13,10 @@ class WarningUseCookieListener
         $this->twig = $twig;
     }
 
+    /**
+     * @param FilterResponseEvent $event
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function cookieConfirm(FilterResponseEvent $event)
     {
         $request = $event->getRequest();

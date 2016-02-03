@@ -13,6 +13,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CategoryController extends CoreController
 {
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction(Request $request)
     {
         $choiceCategory = new ChoiceCategory();
@@ -21,6 +25,10 @@ class CategoryController extends CoreController
         return $this->processChoiceList($form, $choiceCategory);
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function addAction(Request $request)
     {
         $category = new Category();
@@ -39,6 +47,11 @@ class CategoryController extends CoreController
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function editAction(Request $request, $id)
     {
         $category = $this->getEntity($id, Voter::EDIT);
@@ -57,6 +70,10 @@ class CategoryController extends CoreController
         }
     }
 
+    /**
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function removeAction($id)
     {
         $category = $this->getEntity($id, Voter::DELETE);
@@ -70,6 +87,11 @@ class CategoryController extends CoreController
         return $this->redirectToRoute('lke_admin_index');
     }
 
+    /**
+     * @param Category $category
+     * @param Request $request
+     * @return Form
+     */
     private function generateForm(Category $category, Request $request)
     {
         $form = $this->createForm(new CategoryType(), $category);
@@ -78,6 +100,11 @@ class CategoryController extends CoreController
         return $form;
     }
 
+    /**
+     * @param Form $form
+     * @param Category $category
+     * @return bool
+     */
     private function processForm(Form $form, Category $category)
     {
         if ($form->isValid())
@@ -92,6 +119,11 @@ class CategoryController extends CoreController
         return false;
     }
 
+    /**
+     * @param ChoiceCategory $choiceCategory
+     * @param Request $request
+     * @return Form
+     */
     private function generateChoiceList(ChoiceCategory $choiceCategory, Request $request)
     {
         $form = $this->createForm(new ChoiceCategoryType(), $choiceCategory);
@@ -100,6 +132,11 @@ class CategoryController extends CoreController
         return $form;
     }
 
+    /**
+     * @param Form $form
+     * @param ChoiceCategory $choiceCategory
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     private function processChoiceList(Form $form, ChoiceCategory $choiceCategory)
     {
         if ($form->isValid())
@@ -115,6 +152,9 @@ class CategoryController extends CoreController
         ]);
     }
 
+    /**
+     * @return string
+     */
     protected function getRepositoryName()
     {
         return "LKEBlogBundle:Category";

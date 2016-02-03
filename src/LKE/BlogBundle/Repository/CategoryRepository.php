@@ -1,6 +1,7 @@
 <?php
 
 namespace LKE\BlogBundle\Repository;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * CategoryRepository
@@ -10,12 +11,21 @@ namespace LKE\BlogBundle\Repository;
  */
 class CategoryRepository extends \Doctrine\ORM\EntityRepository
 {
-    private function getQb($qb = null)
+    /**
+     * @param QueryBuilder|null $qb
+     * @return QueryBuilder
+     */
+    private function getQb(QueryBuilder $qb = null)
     {
         return is_null($qb) ? $this->createQueryBuilder('c') : $qb;
     }
 
-    private function bySlug($slug, $qb = null)
+    /**
+     * @param $slug
+     * @param QueryBuilder|null $qb
+     * @return QueryBuilder
+     */
+    private function bySlug($slug, QueryBuilder $qb = null)
     {
         $qb = $this->getQb($qb)
             ->andWhere("c.slug = :slug")
@@ -24,6 +34,11 @@ class CategoryRepository extends \Doctrine\ORM\EntityRepository
         return $qb;
     }
 
+    /**
+     * @param $slug
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function findBySlug($slug)
     {
         $qb = $this->bySlug($slug);
