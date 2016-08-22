@@ -2,7 +2,11 @@ language: php
 php:
     - 5.5
 
+services:
+  - mysql
+
 before_script:
+  - mysql -e 'create database blog;'
   - cp app/config/parameters.yml.travis app/config/parameters.yml
   - composer install
   - php app/console doctrine:database:create --env=test
